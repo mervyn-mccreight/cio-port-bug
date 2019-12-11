@@ -1,23 +1,19 @@
-# Docker
+# Ktor-CIO local port bug
 
-Sample project for [Ktor](https://ktor.io) running as an application with 
-inside [Docker](https://www.docker.com/).
+If you map a port in Docker, ktor with CIO evaluates `request.local.port` to the mapped port (Docker) not the port
+local to the application (the port that the applications connector is receiving the requests on; in Docker wording - 
+the "exposed port").
+
+I.e. the application gets the mapped port, not the exposed port.
+
+This behaviour makes it impossible to filter requests by port, as you can not know, how ports are mapped.
 
 ## Running
-
-Execute this command in the repository's root directory to run this sample:
-
-```bash
-./gradlew run
-```
-
-To build and run a docker image:
-
+To build and run a docker image with a mapped port:
 ```bash
 ./gradlew build
 docker build -t ktor-docker-sample-application .
 docker run -m512M --cpus 2 -it -p 31337:8080 --rm ktor-docker-sample-application
 ```
- 
-And navigate to http://localhost:31337/ to see the sample home page.  
+And navigate to http://localhost:31337/ to see what the application evaluates as the requests 'local port'.  
 
