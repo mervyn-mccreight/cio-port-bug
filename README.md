@@ -6,7 +6,7 @@ the "exposed port").
 
 I.e. the application gets the mapped port, not the exposed port.
 
-This behaviour makes it impossible to filter requests by port, as you can not know, how ports are mapped.
+This behaviour makes it impossible to filter requests by port, as you can not know, how "the user" maps the ports.
 
 ## Running
 To build and run a docker image with a mapped port:
