@@ -1,4 +1,4 @@
-# Ktor-CIO local port bug
+# [Ktor-CIO local port bug](https://github.com/ktorio/ktor/issues/1487)
 
 If you map a port in Docker, ktor with CIO evaluates `request.local.port` to the mapped port (Docker) not the port
 local to the application (the port that the applications connector is receiving the requests on; in Docker wording - 
